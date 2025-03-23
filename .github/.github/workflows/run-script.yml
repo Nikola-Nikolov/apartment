@@ -1,0 +1,19 @@
+name: Run Property Monitor
+
+on:
+  schedule:
+    - cron: '0 9 * * 1'  # Runs at 9 AM every Monday
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4 pandas
+      - name: Run script
+        run: python property_monitor.py
